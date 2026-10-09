@@ -1,5 +1,5 @@
-import { differenceInMinutes, parse, addDays, isValid } from 'date-fns';
-import { SleepEntry } from '../types';
+import { differenceInMinutes, parse, addDays } from 'date-fns';
+import type { SleepEntry } from '../types';
 
 export function parseTime(timeStr: string, baseDateStr: string, isNextDay = false): Date {
   const date = parse(baseDateStr, 'yyyy-MM-dd', new Date());

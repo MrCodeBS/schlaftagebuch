@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { Button } from '../components/ui/Button';
@@ -6,7 +6,7 @@ import { NumberStepper, TimePicker, RatingButtons } from '../components/ui/Input
 import { format, subDays } from 'date-fns';
 import { ArrowLeft } from 'lucide-react';
 import { calculateSleepStats, formatDuration } from '../utils/calculations';
-import { SleepEntry } from '../types';
+import type { SleepEntry } from '../types';
 
 const defaultEntry: Partial<SleepEntry> = {
   napped: false,

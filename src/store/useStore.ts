@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { get, set, del } from 'idb-keyval';
-import { SleepEntry, WeeklySettings } from '../types';
+import type { SleepEntry, WeeklySettings } from '../types';
 
 const idbStorage = {
   getItem: async (name: string): Promise<string | null> => {
@@ -27,14 +27,14 @@ interface State {
 
 export const useStore = create<State>()(
   persist(
-    (set) => ({
+    (set: any) => ({
       entries: {},
       settings: {
         prescribedBedtime: '23:00',
         prescribedOutOfBedTime: '06:00',
       },
-      saveEntry: (entry) =>
-        set((state) => ({
+      saveEntry: (entry: any) =>
+        set((state: any) => ({
           entries: {
             ...state.entries,
             [entry.id]: {
@@ -43,20 +43,20 @@ export const useStore = create<State>()(
             },
           },
         })),
-      deleteEntry: (id) =>
-        set((state) => {
+      deleteEntry: (id: any) =>
+        set((state: any) => {
           const newEntries = { ...state.entries };
           delete newEntries[id];
           return { entries: newEntries };
         }),
-      updateSettings: (settings) =>
-        set((state) => ({
+      updateSettings: (settings: any) =>
+        set((state: any) => ({
           settings: { ...state.settings, ...settings },
         })),
-      importData: (newEntries) =>
-        set((state) => {
+      importData: (newEntries: any) =>
+        set((state: any) => {
           const entriesMap = { ...state.entries };
-          newEntries.forEach((e) => {
+          newEntries.forEach((e: any) => {
             entriesMap[e.id] = e;
           });
           return { entries: entriesMap };

@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from './Button';
 import { Minus, Plus } from 'lucide-react';
 

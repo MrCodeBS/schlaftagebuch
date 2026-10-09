@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useStore } from '../store/useStore';
-import { format, parseISO, startOfWeek, endOfWeek, isSameWeek } from 'date-fns';
+import { format, parseISO, startOfWeek, } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { calculateSleepStats } from '../utils/calculations';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -11,7 +11,7 @@ export default function Weekly() {
   const weeklyData = useMemo(() => {
     const weeks: Record<string, any[]> = {};
     
-    Object.values(entries).forEach(entry => {
+    Object.values(entries).forEach((entry: any) => {
       const stats = calculateSleepStats(entry);
       if (!stats) return;
       
@@ -69,7 +69,7 @@ export default function Weekly() {
               <YAxis stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} domain={[0, 100]} />
               <Tooltip 
                 contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                formatter={(value: number) => [`${value} %`, 'Effizienz']}
+                formatter={(value: any) => [`${value} %`, 'Effizienz']}
               />
               <Line type="monotone" dataKey="effizienz" stroke="#2563eb" strokeWidth={4} dot={{ r: 6, fill: '#2563eb' }} activeDot={{ r: 8 }} />
             </LineChart>

@@ -1,8 +1,8 @@
-import { SleepEntry } from '../types';
-import { calculateSleepStats, formatDuration } from './calculations';
+import type { SleepEntry } from '../types';
+import { calculateSleepStats } from './calculations';
 
 export function exportToCSV(entries: Record<string, SleepEntry>) {
-  const sortedEntries = Object.values(entries).sort((a, b) => a.id.localeCompare(b.id));
+  const sortedEntries = (Object.values(entries) as SleepEntry[]).sort((a, b) => a.id.localeCompare(b.id));
 
   // CSV Header
   const headers = [

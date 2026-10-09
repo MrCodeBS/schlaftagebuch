@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import { useStore } from '../store/useStore';
 import { format, parseISO, eachDayOfInterval, subDays } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { calculateSleepStats } from '../utils/calculations';
 import { Button } from '../components/ui/Button';
-import { SleepEntry } from '../types';
+import type { SleepEntry } from '../types';
 
 export default function History() {
   const { entries, saveEntry } = useStore();
-  const navigate = useNavigate();
+  
   const [showCatchup, setShowCatchup] = useState(false);
   const [catchupDays, setCatchupDays] = useState(3);
   
-  const sortedEntries = Object.values(entries).sort((a, b) => b.id.localeCompare(a.id));
+  const sortedEntries = (Object.values(entries) as SleepEntry[]).sort((a, b) => b.id.localeCompare(a.id));
 
   const getEfficiencyColor = (efficiency: number) => {
     if (efficiency >= 85) return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 border-green-200 dark:border-green-800';
