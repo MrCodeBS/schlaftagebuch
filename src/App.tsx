@@ -17,7 +17,7 @@ function App() {
       <main className="max-w-md mx-auto p-4 md:p-6">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/protocol/:type" element={<ProtocolFlow />} />
+          <Route path="/protocol/:type/:date?" element={<ProtocolFlow />} />
           <Route path="/history" element={<History />} />
           <Route path="/weekly" element={<Weekly />} />
           <Route path="/settings" element={<Settings />} />

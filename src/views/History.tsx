@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useStore } from '../store/useStore';
 import { format, parseISO, eachDayOfInterval, subDays } from 'date-fns';
@@ -9,6 +10,7 @@ import type { SleepEntry } from '../types';
 
 export default function History() {
   const { entries, saveEntry } = useStore();
+  const navigate = useNavigate();
   
   const [showCatchup, setShowCatchup] = useState(false);
   const [catchupDays, setCatchupDays] = useState(3);
@@ -104,7 +106,7 @@ export default function History() {
             const date = parseISO(entry.id);
             
             return (
-              <div key={entry.id} className="bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform relative overflow-hidden">
+              <div key={entry.id} onClick={() => navigate('/protocol/evening/' + entry.id)} className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform relative overflow-hidden">
                 {entry.isEstimated && (
                   <div className="absolute top-0 right-0 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-0.5 rounded-bl-lg">
                     GESCHÄTZT

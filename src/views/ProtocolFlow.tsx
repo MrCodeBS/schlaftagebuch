@@ -21,12 +21,12 @@ const defaultEntry: Partial<SleepEntry> = {
 };
 
 export default function ProtocolFlow() {
-  const { type } = useParams<{ type: 'evening' | 'morning' }>();
+  const { type, date } = useParams<{ type: 'evening' | 'morning', date?: string }>();
   const navigate = useNavigate();
   const { entries, saveEntry } = useStore();
   
   const isMorning = type === 'morning';
-  const targetDate = isMorning ? format(subDays(new Date(), 1), 'yyyy-MM-dd') : format(new Date(), 'yyyy-MM-dd');
+  const targetDate = date || (isMorning ? format(subDays(new Date(), 1), 'yyyy-MM-dd') : format(new Date(), 'yyyy-MM-dd'));
   
   const existingEntry = entries[targetDate] || { id: targetDate, ...defaultEntry };
   
