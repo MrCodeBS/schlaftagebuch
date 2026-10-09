@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-bg-light: #f9fafb;
+  --color-bg-dark: #111827;
+  --color-surface-light: #ffffff;
+  --color-surface-dark: #1f2937;
+  --color-text-light: #111827;
+  --color-text-dark: #f9fafb;
+  --color-text-muted-light: #6b7280;
+  --color-text-muted-dark: #9ca3af;
+  --color-border-light: #e5e7eb;
+  --color-border-dark: #374151;
+}
+
+@layer base {
+  :root {
+    --bg-color: var(--color-bg-light);
+    --surface-color: var(--color-surface-light);
+    --text-color: var(--color-text-light);
+    --text-muted: var(--color-text-muted-light);
+    --border-color: var(--color-border-light);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: var(--color-bg-dark);
+      --surface-color: var(--color-surface-dark);
+      --text-color: var(--color-text-dark);
+      --text-muted: var(--color-text-muted-dark);
+      --border-color: var(--color-border-dark);
+    }
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}
